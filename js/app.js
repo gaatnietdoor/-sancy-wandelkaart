@@ -73,7 +73,7 @@
     }).addTo(townMarkers);
 
     marker.bindTooltip(town.name, {
-      permanent: true,
+      permanent: false,
       direction: 'top',
       offset: [0, -8],
       className: 'town-tooltip'
