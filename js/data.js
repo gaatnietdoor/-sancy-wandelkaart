@@ -216,8 +216,8 @@ const TRAILS = [
     hoogteverschil: "172 m",
     moeilijkheid: "gemiddeld",
     beschrijving: "Koeien, molens en kaas: ontdek de agrarische tradities in het Occitaanse dialect. Vertrek vanaf de Maison des Fromages.",
-    startPunt: [45.4041, 2.9199],
-    hoogtepunten: ["Agrarisch erfgoed", "Watermolens", "Kaasmakerij"]
+    startPunt: [45.4080, 2.8261],
+    hoogtepunten: ["Maison des Fromages", "Agrarisch erfgoed", "Watermolens", "Kaasmakerij"]
   },
   {
     id: 19,
@@ -259,7 +259,7 @@ const TOWNS = [
   { name: "Picherande", coords: [45.4670, 2.7760], voorzieningen: ["gite", "camping"] },
   { name: "Saint-Pierre-Colamine", coords: [45.5450, 2.9830], voorzieningen: ["gite"] },
   { name: "Le Vernet-Sainte-Marguerite", coords: [45.6050, 2.9200], voorzieningen: [] },
-  { name: "Egliseneuve-d'Entraigues", coords: [45.4041, 2.9199], voorzieningen: ["camping", "gite"] },
+  { name: "Egliseneuve-d'Entraigues", coords: [45.4080, 2.8261], voorzieningen: ["camping", "gite"] },
   { name: "Compains", coords: [45.4300, 2.9600], voorzieningen: ["gite"] },
   { name: "La Godivelle", coords: [45.3890, 2.8860], voorzieningen: [] },
   { name: "Espinchal", coords: [45.4150, 2.9350], voorzieningen: [] },
