@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sancy Wandelkaart - Massif du Sancy</title>
+  <meta name="description" content="Interactieve wandelkaart van het Massif du Sancy, Auvergne, Frankrijk. 20 wandelroutes met alle details.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="header">
+    <div class="header-content">
+      <h1>Sancy Wandelkaart</h1>
+      <p class="subtitle">20 wandelingen in het Massif du Sancy</p>
+    </div>
+  </header>
+
+  <main id="app">
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <h2>Wandelingen</h2>
+        <button id="sidebar-close" class="btn-icon" aria-label="Sluit zijbalk">&times;</button>
+      </div>
+
+      <div class="filters">
+        <input type="text" id="search" placeholder="Zoek wandeling..." aria-label="Zoek wandeling">
+        <select id="filter-difficulty" aria-label="Filter op moeilijkheid">
+          <option value="alle">Alle niveaus</option>
+          <option value="makkelijk">Makkelijk</option>
+          <option value="gemiddeld">Gemiddeld</option>
+          <option value="moeilijk">Moeilijk</option>
+        </select>
+      </div>
+
+      <ul id="trail-list"></ul>
+
+      <div class="legend">
+        <h3>Legenda</h3>
+        <div class="legend-item"><span class="legend-dot difficulty-makkelijk"></span> Makkelijk</div>
+        <div class="legend-item"><span class="legend-dot difficulty-gemiddeld"></span> Gemiddeld</div>
+        <div class="legend-item"><span class="legend-dot difficulty-moeilijk"></span> Moeilijk</div>
+        <div class="legend-item"><span class="legend-dot legend-town"></span> Dorp</div>
+        <div class="legend-item"><span class="legend-dot legend-poi"></span> Bezienswaardigheid</div>
+        <div class="legend-item"><span class="legend-line"></span> GPX route</div>
+      </div>
+    </aside>
+
+    <div id="map"></div>
+
+    <button id="sidebar-toggle" class="btn-fab" aria-label="Open wandelingen">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 12h18M3 6h18M3 18h18"/>
+      </svg>
+    </button>
+
+    <button id="locate-btn" class="btn-fab btn-locate" aria-label="Mijn locatie">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+      </svg>
+    </button>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
