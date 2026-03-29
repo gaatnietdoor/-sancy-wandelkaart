@@ -463,7 +463,7 @@
     var nextArrow = interval;
     for (var j = 1; j < latlngs.length; j++) {
       if (dists[j] >= nextArrow) {
-        var angle = bearing(latlngs[j - 1][0], latlngs[j - 1][1], latlngs[j][0], latlngs[j][1]);
+        var angle = bearing(latlngs[j - 1][0], latlngs[j - 1][1], latlngs[j][0], latlngs[j][1]) - 90;
         var icon = L.divIcon({
           html: '<div class="route-arrow" style="transform:rotate(' + angle + 'deg)">&#9654;</div>',
           className: 'route-arrow-container',
