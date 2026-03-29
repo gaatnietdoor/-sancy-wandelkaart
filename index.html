@@ -38,6 +38,16 @@
 
       <ul id="trail-list"></ul>
 
+      <div id="trail-detail" class="trail-detail" style="display:none">
+        <button id="detail-close" class="detail-close" aria-label="Sluit detail">&larr; Terug naar lijst</button>
+        <div id="detail-content"></div>
+        <div id="elevation-profile">
+          <h4>Hoogteprofiel</h4>
+          <canvas id="elevation-canvas" width="300" height="120"></canvas>
+          <div id="elevation-stats" class="elevation-stats"></div>
+        </div>
+      </div>
+
       <div class="legend">
         <h3>Legenda</h3>
         <div class="legend-item"><span class="legend-dot difficulty-makkelijk"></span> Makkelijk</div>

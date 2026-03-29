@@ -133,6 +133,196 @@
     return html;
   }
 
+  // Trail detail panel
+  var trailDetail = document.getElementById('trail-detail');
+  var detailContent = document.getElementById('detail-content');
+  var elevationCanvas = document.getElementById('elevation-canvas');
+  var elevationStats = document.getElementById('elevation-stats');
+  var elevationProfile = document.getElementById('elevation-profile');
+
+  // Cache for parsed GPX elevation data
+  var gpxElevationCache = {};
+
+  function loadGPXElevation(gpxUrl, callback) {
+    if (gpxElevationCache[gpxUrl]) {
+      callback(gpxElevationCache[gpxUrl]);
+      return;
+    }
+    fetch(gpxUrl)
+      .then(function (r) { return r.text(); })
+      .then(function (gpxText) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(gpxText, 'text/xml');
+        var points = doc.querySelectorAll('trkpt');
+        var data = [];
+        var totalDist = 0;
+        var prevLat = null, prevLon = null;
+        points.forEach(function (pt) {
+          var lat = parseFloat(pt.getAttribute('lat'));
+          var lon = parseFloat(pt.getAttribute('lon'));
+          var eleEl = pt.querySelector('ele');
+          var ele = eleEl ? parseFloat(eleEl.textContent) : 0;
+          if (prevLat !== null) {
+            totalDist += haversine(prevLat, prevLon, lat, lon);
+          }
+          data.push({ dist: totalDist, ele: ele, lat: lat, lon: lon });
+          prevLat = lat;
+          prevLon = lon;
+        });
+        gpxElevationCache[gpxUrl] = data;
+        callback(data);
+      })
+      .catch(function () { callback(null); });
+  }
+
+  function haversine(lat1, lon1, lat2, lon2) {
+    var R = 6371000;
+    var dLat = (lat2 - lat1) * Math.PI / 180;
+    var dLon = (lon2 - lon1) * Math.PI / 180;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+
+  function drawElevationProfile(data) {
+    var canvas = elevationCanvas;
+    var ctx = canvas.getContext('2d');
+    var dpr = window.devicePixelRatio || 1;
+    var rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+    var w = rect.width;
+    var h = rect.height;
+    var pad = { top: 10, right: 10, bottom: 24, left: 40 };
+
+    var elevations = data.map(function (d) { return d.ele; });
+    var distances = data.map(function (d) { return d.dist; });
+    var minEle = Math.min.apply(null, elevations) - 10;
+    var maxEle = Math.max.apply(null, elevations) + 10;
+    var maxDist = distances[distances.length - 1];
+
+    var chartW = w - pad.left - pad.right;
+    var chartH = h - pad.top - pad.bottom;
+
+    // Background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, w, h);
+
+    // Grid lines
+    ctx.strokeStyle = '#eee';
+    ctx.lineWidth = 1;
+    var eleSteps = 4;
+    for (var i = 0; i <= eleSteps; i++) {
+      var y = pad.top + (chartH / eleSteps) * i;
+      ctx.beginPath();
+      ctx.moveTo(pad.left, y);
+      ctx.lineTo(w - pad.right, y);
+      ctx.stroke();
+      // Labels
+      var eleLabel = Math.round(maxEle - ((maxEle - minEle) / eleSteps) * i);
+      ctx.fillStyle = '#999';
+      ctx.font = '10px Nunito, sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText(eleLabel + 'm', pad.left - 4, y + 3);
+    }
+
+    // Distance labels
+    ctx.textAlign = 'center';
+    var distSteps = 4;
+    for (var j = 0; j <= distSteps; j++) {
+      var x = pad.left + (chartW / distSteps) * j;
+      var distLabel = (maxDist / 1000 / distSteps * j).toFixed(1);
+      ctx.fillText(distLabel + 'km', x, h - 4);
+    }
+
+    // Fill area
+    ctx.beginPath();
+    ctx.moveTo(pad.left, pad.top + chartH);
+    data.forEach(function (d) {
+      var x = pad.left + (d.dist / maxDist) * chartW;
+      var y = pad.top + chartH - ((d.ele - minEle) / (maxEle - minEle)) * chartH;
+      ctx.lineTo(x, y);
+    });
+    ctx.lineTo(pad.left + chartW, pad.top + chartH);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(45, 106, 79, 0.15)';
+    ctx.fill();
+
+    // Line
+    ctx.beginPath();
+    data.forEach(function (d, idx) {
+      var x = pad.left + (d.dist / maxDist) * chartW;
+      var y = pad.top + chartH - ((d.ele - minEle) / (maxEle - minEle)) * chartH;
+      if (idx === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.strokeStyle = '#2d6a4f';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  function showTrailDetail(trail) {
+    var html = '<div class="detail-title"><span class="trail-number">' + trail.id + '</span> ' + trail.name + '</div>';
+    html += '<div class="detail-meta">';
+    html += '<span><strong>Start:</strong> ' + trail.gemeente + '</span>';
+    html += '<span><strong>Afstand:</strong> ' + trail.afstand + '</span>';
+    html += '<span><strong>Duur:</strong> ' + trail.duur + '</span>';
+    html += '<span><strong>Hoogteverschil:</strong> ' + trail.hoogteverschil + '</span>';
+    html += '<span class="badge badge-' + trail.moeilijkheid + '">' + trail.moeilijkheid + '</span>';
+    html += '</div>';
+    html += '<div class="detail-description">' + trail.beschrijving + '</div>';
+    if (trail.hoogtepunten && trail.hoogtepunten.length > 0) {
+      html += '<div class="detail-highlights"><strong>Hoogtepunten:</strong> ' + trail.hoogtepunten.join(', ') + '</div>';
+    }
+    if (trail.gpx) {
+      html += '<div><a href="' + trail.gpx + '" download class="gpx-download">⬇ Download GPX</a></div>';
+    }
+    detailContent.innerHTML = html;
+
+    // Show/hide elevation
+    if (trail.gpx) {
+      elevationProfile.style.display = 'block';
+      loadGPXElevation(trail.gpx, function (data) {
+        if (!data || data.length === 0) {
+          elevationProfile.style.display = 'none';
+          return;
+        }
+        drawElevationProfile(data);
+
+        var elevations = data.map(function (d) { return d.ele; });
+        var minE = Math.round(Math.min.apply(null, elevations));
+        var maxE = Math.round(Math.max.apply(null, elevations));
+        var totalUp = 0, totalDown = 0;
+        for (var i = 1; i < elevations.length; i++) {
+          var diff = elevations[i] - elevations[i - 1];
+          if (diff > 0) totalUp += diff;
+          else totalDown -= diff;
+        }
+        var totalDist = (data[data.length - 1].dist / 1000).toFixed(1);
+        elevationStats.innerHTML =
+          '<span>Min: ' + minE + 'm</span>' +
+          '<span>Max: ' + maxE + 'm</span>' +
+          '<span>Stijging: +' + Math.round(totalUp) + 'm</span>' +
+          '<span>Daling: -' + Math.round(totalDown) + 'm</span>' +
+          '<span>Afstand: ' + totalDist + ' km</span>';
+      });
+    } else {
+      elevationProfile.style.display = 'none';
+    }
+
+    trailList.style.display = 'none';
+    trailDetail.style.display = 'block';
+  }
+
+  function hideTrailDetail() {
+    trailDetail.style.display = 'none';
+    trailList.style.display = 'block';
+  }
+
+  document.getElementById('detail-close').addEventListener('click', hideTrailDetail);
+
   // Sidebar trail list
   const trailList = document.getElementById('trail-list');
   const searchInput = document.getElementById('search');
@@ -179,6 +369,8 @@
             layer.openPopup();
           }
         });
+        // Show detail panel
+        showTrailDetail(trail);
         // Close sidebar on mobile
         if (window.innerWidth <= 768) {
           sidebar.classList.remove('open');
@@ -244,16 +436,14 @@
     alert('Locatie kon niet worden bepaald. Controleer of locatietoegang is ingeschakeld.');
   });
 
-  // GPX loading
-  // Loads all GPX files from the gpx/ directory
-  // GPX files should be placed in the gpx/ folder and listed in gpxFiles array below
-  var gpxFiles = ['gpx/route-18-egliseneuve.gpx'];
-
-  gpxFiles.forEach(function (file) {
-    loadGPX(file);
+  // Load GPX routes linked to trails
+  TRAILS.forEach(function (trail) {
+    if (trail.gpx) {
+      loadGPX(trail.gpx, trail);
+    }
   });
 
-  function loadGPX(url) {
+  function loadGPX(url, trail) {
     fetch(url)
       .then(function (response) { return response.text(); })
       .then(function (gpxText) {
@@ -280,11 +470,8 @@
                 weight: 4,
                 opacity: 0.8
               }).addTo(gpxRoutes);
-              if (name) {
-                polyline.bindPopup('<strong>' + name.textContent + '</strong><br><a href="' + url + '" download>Download GPX</a>');
-              } else {
-                polyline.bindPopup('<a href="' + url + '" download>Download GPX</a>');
-              }
+              var popupTitle = trail ? trail.name : (name ? name.textContent : 'Route');
+              polyline.bindPopup('<strong>' + popupTitle + '</strong><br><a href="' + url + '" download class="gpx-download">⬇ Download GPX</a>');
             }
           });
         });
