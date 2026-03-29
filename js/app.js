@@ -241,9 +241,7 @@
   // GPX loading
   // Loads all GPX files from the gpx/ directory
   // GPX files should be placed in the gpx/ folder and listed in gpxFiles array below
-  var gpxFiles = [];
-  // To add GPX files, add their paths here, e.g.:
-  // var gpxFiles = ['gpx/route1.gpx', 'gpx/route2.gpx'];
+  var gpxFiles = ['gpx/route-18-egliseneuve.gpx'];
 
   gpxFiles.forEach(function (file) {
     loadGPX(file);
