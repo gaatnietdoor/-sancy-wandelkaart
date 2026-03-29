@@ -115,7 +115,7 @@
 
   // Build trail popup HTML
   function buildTrailPopup(trail) {
-    let html = '<div class="popup-title">' + trail.name + '</div>';
+    let html = '<div class="popup-title"><span class="trail-number">' + trail.id + '</span> ' + trail.name + '</div>';
     html += '<div class="popup-gemeente">Start: ' + trail.gemeente + '</div>';
     html += '<div class="popup-meta">';
     html += '<span>' + trail.afstand + '</span>';
@@ -158,7 +158,7 @@
       const li = document.createElement('li');
       li.className = 'trail-item' + (trail.id === activeTrailId ? ' active' : '');
       li.innerHTML =
-        '<div class="trail-item-name">' + trail.name + '</div>' +
+        '<div class="trail-item-name"><span class="trail-number">' + trail.id + '</span> ' + trail.name + '</div>' +
         '<div class="trail-item-meta">' +
         '<span>' + trail.afstand + '</span>' +
         '<span>' + trail.duur + '</span>' +
