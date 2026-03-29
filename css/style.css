@@ -342,6 +342,22 @@ body {
   font-size: 0.9rem;
 }
 
+/* GPX download link */
+.gpx-download {
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: rgba(45, 106, 79, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.gpx-download:hover {
+  background: rgba(45, 106, 79, 0.2);
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   #header {

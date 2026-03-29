@@ -127,6 +127,9 @@
     if (trail.hoogtepunten && trail.hoogtepunten.length > 0) {
       html += '<div class="popup-highlights"><strong>Hoogtepunten:</strong> ' + trail.hoogtepunten.join(', ') + '</div>';
     }
+    if (trail.gpx) {
+      html += '<div style="margin-top:6px"><a href="' + trail.gpx + '" download class="gpx-download">⬇ Download GPX</a></div>';
+    }
     return html;
   }
 
@@ -157,14 +160,17 @@
     filtered.forEach(function (trail) {
       const li = document.createElement('li');
       li.className = 'trail-item' + (trail.id === activeTrailId ? ' active' : '');
+      var gpxLink = trail.gpx ? '<a href="' + trail.gpx + '" download class="gpx-download" title="Download GPX">⬇ GPX</a>' : '';
       li.innerHTML =
         '<div class="trail-item-name"><span class="trail-number">' + trail.id + '</span> ' + trail.name + '</div>' +
         '<div class="trail-item-meta">' +
         '<span>' + trail.afstand + '</span>' +
         '<span>' + trail.duur + '</span>' +
         '<span class="badge badge-' + trail.moeilijkheid + '">' + trail.moeilijkheid + '</span>' +
+        gpxLink +
         '</div>';
-      li.addEventListener('click', function () {
+      li.addEventListener('click', function (e) {
+        if (e.target.classList.contains('gpx-download')) return;
         setActiveTrail(trail.id);
         map.setView(trail.startPunt, 14);
         // Open popup

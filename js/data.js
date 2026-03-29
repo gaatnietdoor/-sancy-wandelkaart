@@ -217,7 +217,8 @@ const TRAILS = [
     moeilijkheid: "gemiddeld",
     beschrijving: "Koeien, molens en kaas: ontdek de agrarische tradities in het Occitaanse dialect. Vertrek vanaf de Maison des Fromages.",
     startPunt: [45.4080, 2.8261],
-    hoogtepunten: ["Maison des Fromages", "Agrarisch erfgoed", "Watermolens", "Kaasmakerij"]
+    hoogtepunten: ["Maison des Fromages", "Agrarisch erfgoed", "Watermolens", "Kaasmakerij"],
+    gpx: "gpx/route-18-egliseneuve.gpx"
   },
   {
     id: 19,
