@@ -443,6 +443,49 @@
     }
   });
 
+  function bearing(lat1, lon1, lat2, lon2) {
+    var dLon = (lon2 - lon1) * Math.PI / 180;
+    var y = Math.sin(dLon) * Math.cos(lat2 * Math.PI / 180);
+    var x = Math.cos(lat1 * Math.PI / 180) * Math.sin(lat2 * Math.PI / 180) -
+      Math.sin(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.cos(dLon);
+    return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+  }
+
+  function addRouteArrows(latlngs, layerGroup) {
+    if (latlngs.length < 2) return;
+    var totalDist = 0;
+    var dists = [0];
+    for (var i = 1; i < latlngs.length; i++) {
+      totalDist += haversine(latlngs[i - 1][0], latlngs[i - 1][1], latlngs[i][0], latlngs[i][1]);
+      dists.push(totalDist);
+    }
+    var interval = Math.max(400, totalDist / 20);
+    var nextArrow = interval;
+    for (var j = 1; j < latlngs.length; j++) {
+      if (dists[j] >= nextArrow) {
+        var angle = bearing(latlngs[j - 1][0], latlngs[j - 1][1], latlngs[j][0], latlngs[j][1]);
+        var icon = L.divIcon({
+          html: '<div class="route-arrow" style="transform:rotate(' + angle + 'deg)">&#9654;</div>',
+          className: 'route-arrow-container',
+          iconSize: [14, 14],
+          iconAnchor: [7, 7]
+        });
+        L.marker(latlngs[j], { icon: icon, interactive: false }).addTo(layerGroup);
+        nextArrow += interval;
+      }
+    }
+  }
+
+  function addRouteFromPoints(latlngs, popupTitle, url, layerGroup) {
+    var polyline = L.polyline(latlngs, {
+      color: '#2d6a4f',
+      weight: 4,
+      opacity: 0.8
+    }).addTo(layerGroup);
+    polyline.bindPopup('<strong>' + popupTitle + '</strong><br><a href="' + url + '" download class="gpx-download">⬇ Download GPX</a>');
+    addRouteArrows(latlngs, layerGroup);
+  }
+
   function loadGPX(url, trail) {
     fetch(url)
       .then(function (response) { return response.text(); })
@@ -465,13 +508,8 @@
             });
             if (latlngs.length > 0) {
               var name = track.querySelector('name');
-              var polyline = L.polyline(latlngs, {
-                color: '#2d6a4f',
-                weight: 4,
-                opacity: 0.8
-              }).addTo(gpxRoutes);
               var popupTitle = trail ? trail.name : (name ? name.textContent : 'Route');
-              polyline.bindPopup('<strong>' + popupTitle + '</strong><br><a href="' + url + '" download class="gpx-download">⬇ Download GPX</a>');
+              addRouteFromPoints(latlngs, popupTitle, url, gpxRoutes);
             }
           });
         });
@@ -490,16 +528,8 @@
           });
           if (latlngs.length > 0) {
             var name = route.querySelector('name');
-            var polyline = L.polyline(latlngs, {
-              color: '#2d6a4f',
-              weight: 4,
-              opacity: 0.8
-            }).addTo(gpxRoutes);
-            if (name) {
-              polyline.bindPopup('<strong>' + name.textContent + '</strong><br><a href="' + url + '" download>Download GPX</a>');
-            } else {
-              polyline.bindPopup('<a href="' + url + '" download>Download GPX</a>');
-            }
+            var popupTitle = trail ? trail.name : (name ? name.textContent : 'Route');
+            addRouteFromPoints(latlngs, popupTitle, url, gpxRoutes);
           }
         });
       })
