@@ -275,7 +275,9 @@
                 opacity: 0.8
               }).addTo(gpxRoutes);
               if (name) {
-                polyline.bindPopup('<strong>' + name.textContent + '</strong>');
+                polyline.bindPopup('<strong>' + name.textContent + '</strong><br><a href="' + url + '" download>Download GPX</a>');
+              } else {
+                polyline.bindPopup('<a href="' + url + '" download>Download GPX</a>');
               }
             }
           });
@@ -301,7 +303,9 @@
               opacity: 0.8
             }).addTo(gpxRoutes);
             if (name) {
-              polyline.bindPopup('<strong>' + name.textContent + '</strong>');
+              polyline.bindPopup('<strong>' + name.textContent + '</strong><br><a href="' + url + '" download>Download GPX</a>');
+            } else {
+              polyline.bindPopup('<a href="' + url + '" download>Download GPX</a>');
             }
           }
         });
