@@ -130,6 +130,9 @@
     if (trail.gpx) {
       html += '<div style="margin-top:6px"><a href="' + trail.gpx + '" download class="gpx-download">⬇ Download GPX</a></div>';
     }
+    if (trail.url) {
+      html += '<div style="margin-top:4px"><a href="' + trail.url + '" target="_blank" rel="noopener" class="trail-source-link">Meer info</a></div>';
+    }
     return html;
   }
 
@@ -278,6 +281,9 @@
     }
     if (trail.gpx) {
       html += '<div><a href="' + trail.gpx + '" download class="gpx-download">⬇ Download GPX</a></div>';
+    }
+    if (trail.url) {
+      html += '<div style="margin-top:6px"><a href="' + trail.url + '" target="_blank" rel="noopener" class="trail-source-link">Meer info op sancy.com</a></div>';
     }
     detailContent.innerHTML = html;
 
