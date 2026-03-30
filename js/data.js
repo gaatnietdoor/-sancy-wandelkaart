@@ -12,7 +12,7 @@ const TRAILS = [
     hoogteverschil: "329 m",
     moeilijkheid: "moeilijk",
     beschrijving: "Sportieve wandeling in de voetsporen van de oude kabelspoorweg (1902-1958) van La Bourboule. Vanuit het Parc Fenestre volgt het pad de overblijfselen van dit ingenieuze waterballastsysteem door de bossen naar het plateau van Charlannes.",
-    startPunt: [45.5878, 2.7381],
+    startPunt: [45.5855, 2.7393],
     hoogtepunten: ["Ancien funiculaire", "Parc Fenestre", "Plateau de Charlannes", "Uitzicht over La Bourboule"],
     gpx: "gpx/route-1-la-bourboule.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n1-sportif-traces-de-lancien-funiculaire-bourboule/"
@@ -26,7 +26,7 @@ const TRAILS = [
     hoogteverschil: "158 m",
     moeilijkheid: "gemiddeld",
     beschrijving: "Ontdek de wereld van de schapenhouderij en de zomeralmen in de open landschappen rond de Banne d'Ordanche (1515 m). Onderweg leert u alles over het lokale Rava-schapenras, de bergfauna en de eeuwenoude traditie van de estive.",
-    startPunt: [45.6050, 2.7580],
+    startPunt: [45.6075, 2.7580],
     hoogtepunten: ["Banne d'Ordanche (1515 m)", "Rava-schapen", "Panorama Puy de Sancy", "Bergweiden"],
     gpx: "gpx/route-2-murat-le-quaire.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n2-chemin-de-lestive-ovine-murat-quaire/"
@@ -40,7 +40,7 @@ const TRAILS = [
     hoogteverschil: "20 m",
     moeilijkheid: "makkelijk",
     beschrijving: "Het eerste sylvatische pad van Frankrijk: een zintuiglijk bosbadparcours in het bos van de Capucin. Vijf houten 'bos-spa\u2019s', twee uitkijkpunten en een ontspanningsruimte. Ideaal voor gezinnen, volledig zonder hoogteverschil.",
-    startPunt: [45.5640, 2.8050],
+    startPunt: [45.5694, 2.8036],
     hoogtepunten: ["5 bos-spa's", "2 uitkijkpunten", "Ontspanningsruimte", "Zintuiglijk parcours"],
     gpx: "gpx/route-3-le-mont-dore.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n3-sylvatorium-mont-dore/"
@@ -54,7 +54,7 @@ const TRAILS = [
     hoogteverschil: "170 m",
     moeilijkheid: "gemiddeld",
     beschrijving: "Een van de sterren van de Sancy: het beroemde 12e-eeuwse kasteel van Murol onthult zijn geheimen. Van het dorp naar het Parc du Prelong, langs het kasteel en de kerk, ontvouwt het rijke erfgoed zich stap voor stap.",
-    startPunt: [45.5720, 2.9450],
+    startPunt: [45.5727, 2.9418],
     hoogtepunten: ["Chateau de Murol (12e eeuw)", "Parc du Prelong", "Kerk", "Uitzicht op Lac Chambon"],
     gpx: "gpx/route-4-murol.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n4-pentes-chateau-murol/"
@@ -68,7 +68,7 @@ const TRAILS = [
     hoogteverschil: "132 m",
     moeilijkheid: "gemiddeld",
     beschrijving: "Met de ezel met de lier als gids ontdekt u het natuurlijke en culturele erfgoed van Chambon-sur-Lac. Van schilders die zich lieten inspireren tot het Auvergnatische vulkanisme, met een romaans baptisterium uit de 10e-12e eeuw.",
-    startPunt: [45.5730, 2.8650],
+    startPunt: [45.5714, 2.8993],
     hoogtepunten: ["Lac Chambon", "Dent du Marais", "Romaans baptisterium", "Vallee de Chaudefour"],
     gpx: "gpx/route-5-chambon-sur-lac.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n5-balade-de-lane-chambon-lac/"
@@ -82,7 +82,7 @@ const TRAILS = [
     hoogteverschil: "106 m",
     moeilijkheid: "makkelijk",
     beschrijving: "Ontdek het duizendjarig erfgoed van dit beroemde kaasdorp met schitterende uitzichten op de Sancy. Inclusief het bijzondere zoutmoeras met maritieme plantensoorten, een Natura 2000-gebied midden in het dorp.",
-    startPunt: [45.5870, 2.9930],
+    startPunt: [45.5795, 2.9947],
     hoogtepunten: ["Eglise romane", "Thermale bronnen", "Zoutmoeras (Natura 2000)", "Dolmens en menhirs"],
     gpx: "gpx/route-6-saint-nectaire.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n6-chemins-saint-nectaire/"
@@ -96,7 +96,7 @@ const TRAILS = [
     hoogteverschil: "124 m",
     moeilijkheid: "gemiddeld",
     beschrijving: "Ontspannende zen-wandeling met prachtige uitzichten op het Sancy-massief vanaf de Puy d'Alou (360° panorama). Onderweg passeert u het 12e-eeuwse kerkje, de bruisende Sainte-Marguerite-bron en traditionele Auvergnatische huizen.",
-    startPunt: [45.6050, 2.9200],
+    startPunt: [45.6099, 2.9476],
     hoogtepunten: ["Puy d'Alou (360° panorama)", "12e-eeuwse kerk", "Bron Sainte-Marguerite", "Traditionele huizen"],
     gpx: "gpx/route-7-le-vernet.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n7-balade-zen-vernet-sainte-marguerite/"
@@ -110,7 +110,7 @@ const TRAILS = [
     hoogteverschil: "179 m",
     moeilijkheid: "gemiddeld",
     beschrijving: "Kruip in de huid van een geologische detective en ontcijfer de raadsels van de vallei van Jassat. Dit themapad onthult de vulkanische geschiedenis en voert langs bakovens, wasplaatsen en kaaskelders van het rijke boerenleven.",
-    startPunt: [45.5350, 2.9550],
+    startPunt: [45.5517, 2.9394],
     hoogtepunten: ["Vallei van Jassat", "Vulkaan Tartaret", "Bakovens en wasplaatsen", "Panorama Monts Dore"],
     gpx: "gpx/route-8-saint-victor.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n8-dun-geologue-saint-victor-riviere/"
@@ -124,7 +124,7 @@ const TRAILS = [
     hoogteverschil: "283 m",
     moeilijkheid: "moeilijk",
     beschrijving: "Een mix van mysterie, adembenemende uitzichtpunten en flinke klimmetjes. Ontdek het middeleeuwse grotwoningcomplex Grottes de Jonas (met fresco's) en het 360° panorama vanaf de Pic Saint-Pierre over de Chaine des Puys en de Sancy.",
-    startPunt: [45.5400, 2.9780],
+    startPunt: [45.5296, 2.9767],
     hoogtepunten: ["Grottes de Jonas (fresco's)", "Pic Saint-Pierre (360°)", "Croix du Juge", "Lomprat"],
     gpx: "gpx/route-9-saint-pierre-colamine.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n9-calvaire-royaume-cieux-saint-pierre-colamine/"
@@ -151,7 +151,7 @@ const TRAILS = [
     hoogteverschil: "82 m",
     moeilijkheid: "makkelijk",
     beschrijving: "Besse biedt zowel een rijk middeleeuws erfgoed als wilde natuur. Kinderen Neon en Neoli zijn uw speelse gidsen door de magische vallei, met informatie over het vulkanisme dat de Sancy-landschappen heeft gevormd.",
-    startPunt: [45.5120, 2.9370],
+    startPunt: [45.5115, 2.9338],
     hoogtepunten: ["Middeleeuws stadje Besse", "Magische vallei", "Vulkanisme", "Wilde natuur"],
     gpx: "gpx/route-11-besse.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n11-besse-vallee-magique/"
@@ -165,7 +165,7 @@ const TRAILS = [
     hoogteverschil: "101 m",
     moeilijkheid: "gemiddeld",
     beschrijving: "In het hart van de Cezallier vertellen de legendes zich langs twee kratermeren en beschermde veengebieden. La Godivelle: slechts 24 inwoners op 1205 m hoogte, het kleinste en hoogstgelegen dorp van de Puy-de-Dome.",
-    startPunt: [45.3890, 2.8860],
+    startPunt: [45.3886, 2.9235],
     hoogtepunten: ["Lac d'en Haut", "Lac d'en Bas", "Reserve des Sagnes (144 ha)", "Veengebied"],
     gpx: "gpx/route-12-la-godivelle.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n12-sentier-legendes-godivelle/"
@@ -179,7 +179,7 @@ const TRAILS = [
     hoogteverschil: "160 m",
     moeilijkheid: "gemiddeld",
     beschrijving: "Volg het pad dat schoolkinderen van weleer dagelijks te voet aflegden en ontdek het erfgoed van Compains. Uitgestrekte basaltplateaus, burons, de romaanse kerk Saint-Georges en de mysterieuze heuvel van Brion in dit AOP Saint-Nectaire-gebied.",
-    startPunt: [45.4300, 2.9600],
+    startPunt: [45.4416, 2.9263],
     hoogtepunten: ["Motte de Brion", "Kerk Saint-Georges", "Lac du Montcineyre", "Beukenbos"],
     gpx: "gpx/route-13-compains.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n13-chemin-ecoliers-compains/"
@@ -205,7 +205,7 @@ const TRAILS = [
     hoogteverschil: "150 m",
     moeilijkheid: "gemiddeld",
     beschrijving: "Ga mee met Baptistou die het verhaal vertelt van de stoffenhandelaren (marskramers) en de geschiedenis van Espinchal op het Cezallier-plateau. Ontdek de imposante Croix du Marquis en geniet van wijdse uitzichten vanaf de dorpshoogten.",
-    startPunt: [45.4150, 2.9350],
+    startPunt: [45.3938, 2.8808],
     hoogtepunten: ["Croix du Marquis", "Kerk Saint-Nicolas (1157)", "Stoffenhandelaren", "Panorama Cezallier"],
     gpx: "gpx/route-15-espinchal.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n15-marchands-de-toile-espinchal/"
@@ -219,7 +219,7 @@ const TRAILS = [
     hoogteverschil: "140 m",
     moeilijkheid: "gemiddeld",
     beschrijving: "Midden in de uitgestrekte weidegronden van de Cezallier leidt dit pad langs de burons: traditionele stenen kaasmakerijen met leistenen daken, van mei tot oktober bewoond. Adembenemende panorama's op de Sancy en de bergen van de Cantal.",
-    startPunt: [45.4290, 2.8100],
+    startPunt: [45.3441, 2.8706],
     hoogtepunten: ["Burons (stenen kaasmakerijen)", "Veengebieden", "Panorama Sancy en Cantal", "AOP Saint-Nectaire"],
     gpx: "gpx/route-16-montgreleix.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n-16-sentier-burons-montgreleix/"
@@ -233,7 +233,7 @@ const TRAILS = [
     hoogteverschil: "154 m",
     moeilijkheid: "gemiddeld",
     beschrijving: "Saint-Genes-Champespe heeft een bijzondere band met het verzet tijdens WOII. Deze wandeling voert langs herdenkingsplekken van de maquisards van 1944, door bossen, langs meren en weiden op het plateau van de Artense.",
-    startPunt: [45.4450, 2.7650],
+    startPunt: [45.4186, 2.7248],
     hoogtepunten: ["Herdenkingsplekken verzet", "Heide (Natura 2000)", "Meren en weiden", "Plateau Artense"],
     gpx: "gpx/route-17-saint-genes.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n17-chemin-maquisards-saint-genes-champespe/"
@@ -261,7 +261,7 @@ const TRAILS = [
     hoogteverschil: "215 m",
     moeilijkheid: "gemiddeld",
     beschrijving: "Dit parcours rond Picherande is tegelijk wandeling en observatiespel waarbij al uw zintuigen worden geprikkeld. Ontdek het Occitaanse patois en het leven in dit ruige bergdorp op 1130 m, omringd door meren, watervallen en veengebieden.",
-    startPunt: [45.4670, 2.7760],
+    startPunt: [45.4641, 2.7700],
     hoogtepunten: ["Occitaans patois", "Bergdorp (1130 m)", "Meren en watervallen", "Observatiespel"],
     gpx: "gpx/route-19-picherande.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n19-picherande-metait-contee/"
@@ -275,7 +275,7 @@ const TRAILS = [
     hoogteverschil: "131 m",
     moeilijkheid: "gemiddeld",
     beschrijving: "Kristell en Remi onthullen het verhaal van de Vallei van de Fontaine Salee in het Nationaal Natuurreservaat Chastreix-Sancy. Een van de mooiste wandelingen met grandioze vergezichten op de zuidkant van de Puy de Sancy. Let op: honden verboden!",
-    startPunt: [45.5160, 2.7310],
+    startPunt: [45.5215, 2.7714],
     hoogtepunten: ["Natuurreservaat Chastreix-Sancy", "Fontaine Salee", "Panorama Puy de Sancy", "Glaciaal keteldal"],
     gpx: "gpx/route-20-chastreix.gpx",
     url: "https://www.sancy.com/circuits/sancy-tour-parcours-decouverte-sancy/sancy-tour-n-20-cirque-de-fontaine-salee-chastreix/"
