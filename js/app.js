@@ -482,13 +482,19 @@
     }
   }
 
-  function addRouteFromPoints(latlngs, popupTitle, url, layerGroup) {
+  function addRouteFromPoints(latlngs, popupTitle, url, layerGroup, trail) {
     var polyline = L.polyline(latlngs, {
       color: '#2d6a4f',
       weight: 4,
       opacity: 0.8
     }).addTo(layerGroup);
     polyline.bindPopup('<strong>' + popupTitle + '</strong><br><a href="' + url + '" download class="gpx-download">⬇ Download GPX</a>');
+    if (trail) {
+      polyline.on('click', function () {
+        setActiveTrail(trail.id);
+        showTrailDetail(trail);
+      });
+    }
     addRouteArrows(latlngs, layerGroup);
   }
 
@@ -515,7 +521,7 @@
             if (latlngs.length > 0) {
               var name = track.querySelector('name');
               var popupTitle = trail ? trail.name : (name ? name.textContent : 'Route');
-              addRouteFromPoints(latlngs, popupTitle, url, gpxRoutes);
+              addRouteFromPoints(latlngs, popupTitle, url, gpxRoutes, trail);
             }
           });
         });
