@@ -20,15 +20,11 @@
 
   // Layer groups
   const trailMarkers = L.layerGroup().addTo(map);
-  const townMarkers = L.layerGroup().addTo(map);
-  const poiMarkers = L.layerGroup().addTo(map);
   const gpxRoutes = L.layerGroup().addTo(map);
 
   // Layer control
   L.control.layers(null, {
     'Wandelingen': trailMarkers,
-    'Dorpen': townMarkers,
-    'Bezienswaardigheden': poiMarkers,
     'GPX Routes': gpxRoutes
   }, { collapsed: true }).addTo(map);
 
@@ -60,57 +56,6 @@
     });
 
     marker.trailId = trail.id;
-  });
-
-  // Create town markers
-  TOWNS.forEach(function (town) {
-    const marker = L.circleMarker(town.coords, {
-      radius: 6,
-      fillColor: '#1b4332',
-      color: '#fff',
-      weight: 1.5,
-      fillOpacity: 0.8
-    }).addTo(townMarkers);
-
-    marker.bindTooltip(town.name, {
-      permanent: false,
-      direction: 'top',
-      offset: [0, -8],
-      className: 'town-tooltip'
-    });
-
-    if (town.voorzieningen.length > 0) {
-      const facilities = town.voorzieningen
-        .map(function (v) {
-          const info = VOORZIENINGEN_ICONS[v];
-          return info ? info.icon + ' ' + info.label : v;
-        })
-        .join('<br>');
-      marker.bindPopup(
-        '<div class="popup-title">' + town.name + '</div>' +
-        '<div class="popup-voorzieningen">' + facilities + '</div>',
-        { maxWidth: 200 }
-      );
-    }
-  });
-
-  // Create POI markers
-  POINTS_OF_INTEREST.forEach(function (poi) {
-    const marker = L.circleMarker(poi.coords, {
-      radius: 7,
-      fillColor: '#d4a373',
-      color: '#fff',
-      weight: 2,
-      fillOpacity: 0.9
-    }).addTo(poiMarkers);
-
-    let popupContent = '<div class="popup-title">' + poi.name + '</div>';
-    if (poi.hoogte) {
-      popupContent += '<div class="popup-meta">' + poi.hoogte + '</div>';
-    }
-    popupContent += '<div class="popup-description">' + poi.beschrijving + '</div>';
-
-    marker.bindPopup(popupContent, { maxWidth: 250 });
   });
 
   // Build trail popup HTML
