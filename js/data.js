@@ -13,7 +13,8 @@ const TRAILS = [
     moeilijkheid: "moeilijk",
     beschrijving: "Steile wandeling op de sporen van de oude kabelspoorweg van La Bourboule. Vertrek vanaf Avenue Agis Ledru.",
     startPunt: [45.5878, 2.7381],
-    hoogtepunten: ["Ancien funiculaire", "Uitzicht over La Bourboule"]
+    hoogtepunten: ["Ancien funiculaire", "Uitzicht over La Bourboule"],
+    gpx: "gpx/route-1-la-bourboule.gpx"
   },
   {
     id: 2,
