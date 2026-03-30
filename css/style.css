@@ -431,20 +431,6 @@ body {
   border-radius: 10px;
 }
 
-/* Route direction arrows */
-.route-arrow-container {
-  background: none !important;
-  border: none !important;
-}
-
-.route-arrow {
-  color: #1b4332;
-  font-size: 12px;
-  line-height: 14px;
-  text-align: center;
-  opacity: 0.7;
-}
-
 /* GPX download link */
 .gpx-download {
   color: var(--primary);

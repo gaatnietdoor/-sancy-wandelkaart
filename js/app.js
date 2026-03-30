@@ -394,39 +394,6 @@
     }
   });
 
-  function bearing(lat1, lon1, lat2, lon2) {
-    var dLon = (lon2 - lon1) * Math.PI / 180;
-    var y = Math.sin(dLon) * Math.cos(lat2 * Math.PI / 180);
-    var x = Math.cos(lat1 * Math.PI / 180) * Math.sin(lat2 * Math.PI / 180) -
-      Math.sin(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.cos(dLon);
-    return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
-  }
-
-  function addRouteArrows(latlngs, layerGroup) {
-    if (latlngs.length < 2) return;
-    var totalDist = 0;
-    var dists = [0];
-    for (var i = 1; i < latlngs.length; i++) {
-      totalDist += haversine(latlngs[i - 1][0], latlngs[i - 1][1], latlngs[i][0], latlngs[i][1]);
-      dists.push(totalDist);
-    }
-    var interval = Math.max(400, totalDist / 20);
-    var nextArrow = interval;
-    for (var j = 1; j < latlngs.length; j++) {
-      if (dists[j] >= nextArrow) {
-        var angle = bearing(latlngs[j - 1][0], latlngs[j - 1][1], latlngs[j][0], latlngs[j][1]) - 90;
-        var icon = L.divIcon({
-          html: '<div class="route-arrow" style="transform:rotate(' + angle + 'deg)">&#9654;</div>',
-          className: 'route-arrow-container',
-          iconSize: [14, 14],
-          iconAnchor: [7, 7]
-        });
-        L.marker(latlngs[j], { icon: icon, interactive: false }).addTo(layerGroup);
-        nextArrow += interval;
-      }
-    }
-  }
-
   function addRouteFromPoints(latlngs, popupTitle, url, layerGroup, trail) {
     var polyline = L.polyline(latlngs, {
       color: '#2d6a4f',
@@ -440,7 +407,6 @@
         showTrailDetail(trail);
       });
     }
-    addRouteArrows(latlngs, layerGroup);
   }
 
   function loadGPX(url, trail) {
